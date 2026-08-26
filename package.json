@@ -1,0 +1,44 @@
+{
+  "name": "@sdk-e/pipeline",
+  "version": "0.1.0",
+  "description": "Pluggable pipeline engine for splitting work into sequential steps backed by interchangeable stores",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "tsc --noEmit",
+    "prepublishOnly": "npm run build"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.0",
+    "vitest": "^3.0.0",
+    "@types/node": "^22.0.0"
+  },
+  "keywords": [
+    "pipeline",
+    "etl",
+    "middleware",
+    "store",
+    "pluggable"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hsaddek/sdk-e/pipeline.git"
+  }
+}

@@ -1,12 +1,8 @@
 import { defineConfig } from 'vitest/config';
-import path from 'node:path';
+import tsconfigPaths from 'vite-tsconfig-paths';
 
 export default defineConfig({
-  resolve: {
-    alias: {
-      '@sdk-e/pipeline': path.resolve('./src/index.ts'),
-    },
-  },
+  plugins: [tsconfigPaths()],
   test: {
     include: ['tests/**/*.test.ts'],
   },

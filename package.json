@@ -7,6 +7,42 @@
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
+    },
+    "./engine": {
+      "types": "./dist/engine.d.ts",
+      "import": "./dist/engine.js"
+    },
+    "./entry": {
+      "types": "./dist/entry.d.ts",
+      "import": "./dist/entry.js"
+    },
+    "./interfaces/pipeline-item": {
+      "types": "./dist/interfaces/pipeline-item.d.ts",
+      "import": "./dist/interfaces/pipeline-item.js"
+    },
+    "./interfaces/pipeline-parser": {
+      "types": "./dist/interfaces/pipeline-parser.d.ts",
+      "import": "./dist/interfaces/pipeline-parser.js"
+    },
+    "./store/pipeline-store": {
+      "types": "./dist/store/pipeline-store.d.ts",
+      "import": "./dist/store/pipeline-store.js"
+    },
+    "./store/in-memory": {
+      "types": "./dist/store/in-memory.d.ts",
+      "import": "./dist/store/in-memory.js"
+    },
+    "./store/table": {
+      "types": "./dist/store/table.d.ts",
+      "import": "./dist/store/table.js"
+    },
+    "./config-loader": {
+      "types": "./dist/config-loader.d.ts",
+      "import": "./dist/config-loader.js"
+    },
+    "./logger": {
+      "types": "./dist/logger.d.ts",
+      "import": "./dist/logger.js"
     }
   },
   "main": "./dist/index.js",
@@ -26,9 +62,10 @@
     "prepublishOnly": "npm run build"
   },
   "devDependencies": {
+    "@types/node": "^22.0.0",
     "typescript": "^5.7.0",
-    "vitest": "^3.0.0",
-    "@types/node": "^22.0.0"
+    "vite-tsconfig-paths": "^6.1.1",
+    "vitest": "^3.0.0"
   },
   "keywords": [
     "pipeline",

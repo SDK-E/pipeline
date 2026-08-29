@@ -1,6 +1,9 @@
 <p align="center">
-  <img src="branding/pipeline-logo-light.svg#gh-light-mode" alt="Pipeline" width="200">
-  <img src="branding/pipeline-logo-dark.svg#gh-dark-mode" alt="Pipeline" width="200">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="branding/pipeline-logo-dark.svg">
+    <source media="(prefers-color-scheme: light)" srcset="branding/pipeline-logo-light.svg">
+    <img src="branding/pipeline-logo-light.svg" alt="Pipeline" width="200">
+  </picture>
 </p>
 
 <h1 align="center">Pipeline</h1>

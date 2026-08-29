@@ -44,7 +44,7 @@
   - [PipelineParserInterface](#pipelineparserinterface)
   - [ConfigLoader](#configloader)
 - [Custom Store](#custom-store)
-- [Examples](#examples)
+- [Examples](docs/examples.md)
 - [License](#license)
 
 ## Install
@@ -56,12 +56,7 @@ npm install @sdk-e/pipeline
 ## Quick Start
 
 ```typescript
-import {
-  PipelineEngine,
-  InMemoryStore,
-  type PipelineItemInterface,
-  type PipelineStore,
-} from '@sdk-e/pipeline';
+import { PipelineEngine, InMemoryStore, type PipelineItemInterface } from '@sdk-e/pipeline';
 
 class FetchData implements PipelineItemInterface {
   readonly name = 'fetch-data';
@@ -84,32 +79,12 @@ class FetchData implements PipelineItemInterface {
   }
 }
 
-class EnrichData implements PipelineItemInterface<{ batchSize?: number }> {
-  readonly name = 'enrich-data';
-  private batchSize = 100;
-
-  configure(config: { batchSize?: number }) {
-    this.batchSize = config.batchSize ?? 100;
-  }
-
-  async execute(store: PipelineStore): Promise<void> {
-    for (const entry of store.all()) {
-      entry.meta.enriched = true;
-      store.add(entry);
-    }
-  }
-}
-
-const store = new InMemoryStore();
-const engine = new PipelineEngine(store);
-
-engine
-  .register(new FetchData())
-  .register(new EnrichData(), { batchSize: 50 });
-
+const engine = new PipelineEngine(new InMemoryStore());
+engine.register(new FetchData());
 await engine.run();
-console.log(`Pipeline complete: ${store.count()} entries`);
 ```
+
+See [docs/examples.md](docs/examples.md) for more examples.
 
 ## Why Pipeline?
 
@@ -245,33 +220,7 @@ class PostgresStore extends PipelineStoreBase {
 
 ## Examples
 
-### Chaining Multiple Steps
-
-```typescript
-const engine = new PipelineEngine(new TableStore());
-
-engine
-  .register(new ExtractStep())
-  .register(new TransformStep(), { format: 'json' })
-  .register(new LoadStep(), { destination: 'database' })
-  .useParser(new ExportParser());
-
-await engine.run();
-```
-
-### Using Config Files
-
-```typescript
-const loader = new ConfigLoader('./config/pipeline');
-const engine = new PipelineEngine(store);
-
-const extractConfig = await loader.load<ExtractConfig>('extract');
-const transformConfig = await loader.load<TransformConfig>('transform');
-
-engine
-  .register(new ExtractStep(), extractConfig)
-  .register(new TransformStep(), transformConfig);
-```
+For more examples, see [docs/examples.md](docs/examples.md).
 
 ## License
 

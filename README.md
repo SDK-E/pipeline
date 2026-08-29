@@ -275,12 +275,12 @@ engine
   .register(new TransformStep(), transformConfig);
 ```
 
----
-
-<p align="center">
-  <sub>Built with by <a href="https://github.com/SDK-E">SDK Enterprises</a></sub>
-</p>
-
 ## License
 
 [MIT](LICENSE)
+
+---
+
+<p align="center">
+  <sub>Built with by <a href="https://sdk.enterprises">SDK Enterprises</a></sub>
+</p>

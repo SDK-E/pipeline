@@ -3,7 +3,7 @@
 ## Development Setup
 
 ```bash
-git clone https://github.com/hsaddek/sdk-e/pipeline.git
+git clone https://github.com/sdk-e/pipeline.git
 cd pipeline
 nvm use
 npm install

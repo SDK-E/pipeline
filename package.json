@@ -1,6 +1,6 @@
 {
   "name": "@sdk-e/pipeline",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "Pluggable pipeline engine for splitting work into sequential steps backed by interchangeable stores",
   "type": "module",
   "exports": {

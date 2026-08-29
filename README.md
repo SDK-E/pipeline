@@ -6,8 +6,6 @@
   </picture>
 </p>
 
-<h1 align="center">Pipeline</h1>
-
 <p align="center">
   <strong>Pluggable pipeline engine for splitting work into sequential steps backed by interchangeable stores</strong>
 </p>

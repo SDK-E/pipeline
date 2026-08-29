@@ -30,32 +30,32 @@ jobs:
     permissions:
       contents: write
     outputs:
-      version: ${{ steps.version.outputs.VERSION }}
-      created: ${{ steps.create_release.outputs.created }}
+      version: ${{ steps.bump.outputs.version }}
     steps:
       - uses: actions/checkout@v4
-      - name: Get version
-        id: version
-        run: echo "VERSION=$(node -p "require('./package.json').version")" >> $GITHUB_OUTPUT
-      - name: Check if release exists
-        id: check_release
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Setup Git
         run: |
-          if gh release view "v${{ steps.version.outputs.VERSION }}" &>/dev/null; then
-            echo "EXISTS=true" >> $GITHUB_OUTPUT
-          else
-            echo "EXISTS=false" >> $GITHUB_OUTPUT
-          fi
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+      - name: Bump version
+        id: bump
+        run: |
+          npm version patch --no-git-tag-version
+          echo "version=$(node -p "require('./package.json').version")" >> $GITHUB_OUTPUT
+      - name: Commit version bump
+        run: |
+          git add package.json package-lock.json
+          git commit -m "chore: bump version to ${{ steps.bump.outputs.version }}"
+          git push
       - name: Create Release
-        id: create_release
-        if: steps.check_release.outputs.EXISTS == 'false'
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: v${{ steps.version.outputs.VERSION }}
-          release_name: v${{ steps.version.outputs.VERSION }}
+          tag_name: v${{ steps.bump.outputs.version }}
+          release_name: v${{ steps.bump.outputs.version }}
           draft: false
           prerelease: false
 
@@ -73,18 +73,6 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
       - run: npm ci
       - run: npm run build
-      - name: Check if version published
-        id: check_published
-        run: |
-          if npm view "@sdk-e/pipeline@${{ needs.release.outputs.version }}" version &>/dev/null; then
-            echo "PUBLISHED=true" >> $GITHUB_OUTPUT
-          else
-            echo "PUBLISHED=false" >> $GITHUB_OUTPUT
-          fi
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-      - name: Publish to npm
-        if: steps.check_published.outputs.PUBLISHED == 'false'
-        run: npm publish --access public
+      - run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

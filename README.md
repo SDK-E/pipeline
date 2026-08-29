@@ -1,8 +1,6 @@
 <p align="center">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="branding/pipeline-logo-dark.svg">
-    <img src="branding/pipeline-logo-light.svg" alt="Pipeline" width="160">
-  </picture>
+  <img src="branding/pipeline-logo-light.svg#gh-light-mode" alt="Pipeline" width="160">
+  <img src="branding/pipeline-logo-dark.svg#gh-dark-mode" alt="Pipeline" width="160">
 </p>
 
 # SDK Enterprises Pipeline

@@ -1,4 +1,11 @@
-# sdk-e-pipeline
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="branding/pipeline-logo-dark.svg">
+    <img src="branding/pipeline-logo-light.svg" alt="Pipeline" width="160">
+  </picture>
+</p>
+
+# SDK Enterprises Pipeline
 
 Pluggable pipeline engine for splitting work into sequential steps backed by interchangeable stores.
 

@@ -17,6 +17,10 @@
   <img src="https://img.shields.io/badge/types-TypeScript-3178c6?style=flat-square&logo=typescript" alt="TypeScript">
 </p>
 
+<p align="center">
+  <img src="branding/showcase.png" alt="Pipeline Showcase" width="700">
+</p>
+
 ---
 
 ## Features
@@ -34,12 +38,6 @@
 ```bash
 npm install @sdk-e/pipeline
 ```
-
-## Quick Start
-
-<p align="center">
-  <img src="branding/quickstart.png" alt="Quick Start" width="600">
-</p>
 
 ## Documentation
 

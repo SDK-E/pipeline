@@ -37,34 +37,9 @@ npm install @sdk-e/pipeline
 
 ## Quick Start
 
-```typescript
-import { PipelineEngine, InMemoryStore, type PipelineItemInterface } from '@sdk-e/pipeline';
-
-class FetchData implements PipelineItemInterface {
-  readonly name = 'fetch-data';
-
-  configure() {}
-
-  async execute(store: PipelineStore): Promise<void> {
-    const items = await fetch('https://api.example.com/data').then((r) => r.json());
-    for (const item of items) {
-      store.add({
-        id: item.id,
-        source: 'api',
-        data: item,
-        tags: [],
-        meta: {},
-        createdAt: new Date().toISOString(),
-        updatedAt: new Date().toISOString(),
-      });
-    }
-  }
-}
-
-const engine = new PipelineEngine(new InMemoryStore());
-engine.register(new FetchData());
-await engine.run();
-```
+<p align="center">
+  <img src="branding/quickstart.png" alt="Quick Start" width="600">
+</p>
 
 ## Documentation
 

@@ -66,10 +66,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: main
-          fetch-depth: 0
-      - name: Pull latest
-        run: git pull origin main
+          ref: v${{ needs.release.outputs.version }}
       - name: Use Node.js 20
         uses: actions/setup-node@v4
         with:
